@@ -23,8 +23,12 @@ namespace Nancy.Simple
                 retVal = 50;
             }
 
+            Console.Error.WriteLine("C#: Betting with value " + retVal);
+
             if (retVal < 0)
                 retVal = 50;
+
+            Console.Error.WriteLine("C#: After redefine value is " + retVal);
 
             return retVal;
 
