@@ -9,7 +9,7 @@ namespace Nancy.Simple
 
         public static int BetRequest(JObject gameState)
         {
-            int returnVal = 0;
+            int returnVal = 50;
             try
             {
 
