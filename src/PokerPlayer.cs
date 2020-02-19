@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Nancy.Simple
@@ -7,12 +8,12 @@ namespace Nancy.Simple
     {
         public static readonly string VERSION = "Default C# folding player";
 
-        public static int BetRequest(JObject gameState)
+        public static int BetRequest(JObject gameState, string json = "")
         {
             int returnVal = 50;
             try
             {
-
+                
                 var dGameState = (dynamic)gameState;
                 //TODO: Use this method to return the value You want to bet
                 //return (int)dGameState.current_buy_in - (int)dGameState.player.in_action.bet + (int)dGameState.minimum_raise;
