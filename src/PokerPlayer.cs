@@ -7,13 +7,13 @@ namespace Nancy.Simple
 		public static readonly string VERSION = "Default C# folding player";
 
 		public static int BetRequest(JObject gameState)
-		{
+        {
+            var dGameState = (dynamic) gameState;
 			//TODO: Use this method to return the value You want to bet
-			//return (int)gameState["current_buy_in"] - (int)gameState["player"]["in_action"]["bet"];
+			return (int)dGameState.current_buy_in - (int)dGameState.player.in_action.bet + (int)dGameState.minimum_raise;
 			int small_blind = (int)(gameState)["small_blind"];
 			return 3 * small_blind;
-			
-		}
+        }
 
 		public static void ShowDown(JObject gameState)
 		{
