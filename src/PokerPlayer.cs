@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Nancy.Simple
@@ -7,15 +8,14 @@ namespace Nancy.Simple
     {
         public static readonly string VERSION = "Default C# folding player";
 
-        public static int BetRequest(JObject gameState, GameStateModel state)
+        public static int BetRequest(JObject gameState, string state)
         {
-            return 50;
-
             int retVal = 50;
 
             try
             {
-                retVal = PreFlop(state);
+                var model = JsonConvert.DeserializeObject<GameStateModel>(state);
+                retVal = PreFlop(model);
             }
             catch
             {
