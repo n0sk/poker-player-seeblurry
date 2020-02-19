@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Nancy.Simple
 {
-    class GameStateModel
+    public class GameStateModel
     {
         public string tournament_id { get; set; }
         public string game_id { get; set; }
@@ -19,5 +19,6 @@ namespace Nancy.Simple
         public int orbits { get; set; }
         public int in_action { get; set; }
         public PlayerModel[] players { get; set; }
+        public CardModel[] community_cards { get; set; }
     }
 }

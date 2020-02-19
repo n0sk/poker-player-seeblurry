@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Nancy.Simple
 {
-    class PlayerModel
+    public class PlayerModel
     {
         public int id { get; set; }
         public string name { get; set; }
