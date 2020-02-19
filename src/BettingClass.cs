@@ -6,7 +6,7 @@ namespace Nancy.Simple
     public static class BettingClass
     {
 
-        public static int fold(GameStateModel gameState)
+        public static int foldOrCheck(GameStateModel gameState)
         {
             return 0;
         }

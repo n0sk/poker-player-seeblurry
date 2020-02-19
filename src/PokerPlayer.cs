@@ -13,11 +13,7 @@ namespace Nancy.Simple
 
             try
             {
-                //BettingClass.smallRaise(gameState)
-                //var dGameState = (dynamic)gameState;
-                //TODO: Use this method to return the value You want to bet
-                //return (int)gameState["current_buy_in"] - (int)gameState["players"][gameState["in_action"]]["bet"] + (int)gameState["minimum_raise"];
-                retVal = (int)(gameState)["small_blind"];
+                retVal = PreFlop(state);
             }
             catch
             {
@@ -46,5 +42,21 @@ namespace Nancy.Simple
 			} 
 			return minimum_raise;
 		}
+
+        private static int PreFlop(GameStateModel model)
+        {
+            var hand = model.players[model.in_action].EvaluateHand();
+
+            switch (hand)
+            {
+                case 0:
+                    return BettingClass.foldOrCheck(model);
+                case 1:
+                case 2:
+                    return BettingClass.call(model);
+                default:
+                    return BettingClass.smallRaise(model);
+            }
+        }
     }
 }
