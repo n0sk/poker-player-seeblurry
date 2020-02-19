@@ -10,7 +10,7 @@ namespace Nancy.Simple
         {
             var dGameState = (dynamic)gameState;
             //TODO: Use this method to return the value You want to bet
-            return (int)gameState["current_buy_in"] - (int)gameState["player"][gameState["in_action"]]["bet"] + (int)gameState["minimum_raise"];
+            return (int)gameState["current_buy_in"] - (int)gameState["players"][gameState["in_action"]]["bet"] + (int)gameState["minimum_raise"];
             int small_blind = (int)(gameState)["small_blind"];
             return 3 * small_blind;
         }
