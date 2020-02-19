@@ -8,7 +8,7 @@ namespace Nancy.Simple
     {
         public static readonly string VERSION = "Default C# folding player";
 
-        public static int BetRequest(GameStateModel gameState)
+        public static int BetRequest(GameStateModel state,JObject gameState)
 
         {
             int returnVal = 50;
@@ -17,7 +17,7 @@ namespace Nancy.Simple
 
                 //TODO: Use this method to return the value You want to bet
                 //return (int)dGameState.current_buy_in - (int)dGameState.player.in_action.bet + (int)dGameState.minimum_raise;
-                returnVal = 3 * gameState.small_blind;
+                returnVal = 3 * state.small_blind;
 			}
             catch
             {
