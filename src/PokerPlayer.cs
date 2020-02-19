@@ -3,11 +3,11 @@ using Newtonsoft.Json.Linq;
 
 namespace Nancy.Simple
 {
-	public static class PokerPlayer
-	{
-		public static readonly string VERSION = "Default C# folding player";
+    public static class PokerPlayer
+    {
+        public static readonly string VERSION = "Default C# folding player";
 
-		public static int BetRequest(JObject gameState)
+        public static int BetRequest(JObject gameState)
         {
             int returnVal = 0;
             try
@@ -19,7 +19,7 @@ namespace Nancy.Simple
                 int small_blind = (int)(gameState)["small_blind"];
                 returnVal = 3 * small_blind;
 			}
-            catch (Exception e)
+            catch
             {
                 returnVal = 50;
             }
@@ -28,12 +28,18 @@ namespace Nancy.Simple
                 returnVal = 50;
 
             return returnVal;
+
         }
 
-		public static void ShowDown(JObject gameState)
-		{
-			//TODO: Use this method to showdown
-		}
-	}
-}
+        public static void ShowDown(JObject gameState)
+        {
+            //TODO: Use this method to showdown
+        }
 
+		private static int JakobsAlgorithm(JObject gameState)
+		{
+			int minimum_raise = (int)gameState["minimum_raise"];
+			return minimum_raise;
+		}
+    }
+}
