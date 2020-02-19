@@ -5,41 +5,41 @@ namespace Nancy.Simple
     public static class BettingClass
     {
 
-        public static int fold(JObject gameState)
+        public static int fold(GameStateModel gameState)
         {
             return 0;
         }
-        public static int call(JObject gameState)
+        public static int call(GameStateModel gameState)
         {
-            return current_buy_in - (int)myself["bet"];
+            return gameState.current_buy_in - myself(gameState).bet;
         }
 
-        public static int smallRaise(JObject gameState) 
+        public static int smallRaise(GameStateModel gameState) 
         {
             return minimumRaise(gameState);
         }
 
-        public static int bigRaise(JObject gameState)
+        public static int bigRaise(GameStateModel gameState)
         {
-            int difference = current_buy_in - (int)myself["bet"];
-            int myStack = (int)myself["stack"];
+            int difference = gameState.current_buy_in - myself(gameState).bet;
+            int myStack = myself(gameState).stack;
             return (myStack * 0.3) + difference;
         }
 
-        public static int allIn(JObject gameState)
+        public static int allIn(GameStateModel gameState)
         {
-            return (int)myself["stack"];
+            return myself(gameState).stack;
         }
         
-        private static int minimumRaise(JObject gameState)
+        private static int minimumRaise(GameStateModel gameState)
         {
-            int current_buy_in = (int)gameState["current_buy_in"];
-            int minimum_raise = (int)gameState["minimum_raise"];
-            return current_buy_in - (int)myself["bet"] + minimum_raise;
+            int current_buy_in = gameState.current_buy_in;
+            int minimum_raise = gameState.minimum_raise;
+            return current_buy_in - myself(gameState).bet + minimum_raise;
         }
-        private static JObject myself(JObject gameState)
+        private static PlayerModel myself(GameStateModel gameState)
         {
-            return gameState["players"][(int)gameState["in_action"]];
+            return gameState.players[gameState.in_action];
         }
     }
 }
