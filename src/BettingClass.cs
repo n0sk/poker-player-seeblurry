@@ -11,7 +11,7 @@ namespace Nancy.Simple
         }
         public static int call(JObject gameState)
         {
-            return smallRaise(gameState);
+            return current_buy_in - (int)myself["bet"];
         }
 
         public static int smallRaise(JObject gameState) 
@@ -21,8 +21,9 @@ namespace Nancy.Simple
 
         public static int bigRaise(JObject gameState)
         {
+            int difference = current_buy_in - (int)myself["bet"];
             int myStack = (int)myself["stack"];
-            return myStack * 0.3;
+            return (myStack * 0.3) + difference;
         }
 
         public static int allIn(JObject gameState)
@@ -34,20 +35,11 @@ namespace Nancy.Simple
         {
             int current_buy_in = (int)gameState["current_buy_in"];
             int minimum_raise = (int)gameState["minimum_raise"];
-            int activePlayerBetSum = 0;
-            foreach (var player in gameState["players"]) {
-                if(player["status"] == "active") 
-                {
-                    activePlayerBetSum += (int)player["bet"];
-                }
-			}
-
-            return current_buy_in - activePlayerBetSum + minimum_raise;
+            return current_buy_in - (int)myself["bet"] + minimum_raise;
         }
         private static JObject myself(JObject gameState)
         {
-            int myId = (int)gameState["in_action"];
-            return gameState["players"][myId];
+            return gameState["players"][(int)gameState["in_action"]];
         }
     }
 }
