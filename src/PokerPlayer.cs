@@ -6,7 +6,7 @@ namespace Nancy.Simple
     {
         public static readonly string VERSION = "Default C# folding player";
 
-        public static int BetRequest(JObject gameState)
+        public static int BetRequest(JObject gameState, GameStateModel state)
         {
 			//BettingClass.smallRaise(gameState)
             //var dGameState = (dynamic)gameState;
