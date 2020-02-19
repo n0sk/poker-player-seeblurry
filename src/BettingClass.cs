@@ -11,7 +11,7 @@ namespace Nancy.Simple
             if (betWeight < 3) {
                 foldOrCheck(gameState);
             }
-            else if (betWeight >= 3 && betWeight < 7) {
+            else if (betWeight >= 3 && betWeight < 10) {
                 if (gameState.current_buy_in - myself(gameState).bet > 500) {
                     return 250 > myself(gameState).stack ? myself(gameState).stack : 250;
                 } else {
