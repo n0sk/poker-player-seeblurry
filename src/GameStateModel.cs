@@ -30,7 +30,10 @@ namespace Nancy.Simple
         public PlayerModel[] players { get; set; }
         public CardModel[] community_cards { get; set; }
 
-        public PlayerModel ActivePlayer => players[in_action];
+        public PlayerModel ActivePlayer
+        {
+            get { return players[in_action]; }
+        }
 
         public GAME_STAGE GameStage
         {
@@ -76,5 +79,7 @@ namespace Nancy.Simple
         {
             return community_cards.Any(x => ActivePlayer.hole_cards.Any(y => y.rank == x.rank));
         }
+
+        
     }
 }
