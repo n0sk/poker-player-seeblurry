@@ -15,7 +15,7 @@ namespace Nancy.Simple
                 if (gameState.current_buy_in - myself(gameState).bet > 500) {
                     return 250 > myself(gameState).stack ? myself(gameState).stack : 250;
                 } else {
-                    return call(gameState);
+                    return foldOrCheck(gameState);
                 }
             }
             else if (betWeight == 10) {
