@@ -6,7 +6,7 @@ namespace Nancy.Simple
 {
     public static class PokerPlayer
     {
-        public static readonly string VERSION = "Default C# folding player";
+        public static readonly string VERSION = "See Blurry V1.0";
 
         public static int BetRequest(JObject gameState, string state)
         {
