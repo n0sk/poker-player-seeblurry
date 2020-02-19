@@ -6,7 +6,7 @@ namespace Nancy.Simple
 {
     public static class PokerPlayer
     {
-        public static readonly string VERSION = "Default C# folding player";
+        public static readonly string VERSION = "See Blurry V1.0";
 
         public static int BetRequest(JObject gameState, string state)
         {
@@ -32,8 +32,12 @@ namespace Nancy.Simple
                 retVal = 50;
             }
 
+            Console.Error.WriteLine("C#: Betting with value " + retVal);
+
             if (retVal < 0)
                 retVal = 50;
+
+            Console.Error.WriteLine("C#: After redefine value is " + retVal);
 
             return retVal;
 
