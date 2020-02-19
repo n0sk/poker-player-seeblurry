@@ -9,22 +9,22 @@ namespace Nancy.Simple
         public static int bet(GameStateModel gameState, int betWeight)
         {
             if (betWeight < 3) {
-                foldOrCheck(gameState);
+                return foldOrCheck(gameState);
             }
             else if (betWeight >= 3 && betWeight < 10) {
                 if (gameState.current_buy_in - myself(gameState).bet > 500) {
                     return 250 > myself(gameState).stack ? myself(gameState).stack : 250;
                 } else {
-                    call(gameState);
+                    return call(gameState);
                 }
             }
             else if (betWeight == 10) {
                 return allIn(gameState);
             }
             else {
-                foldOrCheck(gameState);
+                return foldOrCheck(gameState);
             }
-
+            
         }
         public static int foldOrCheck(GameStateModel gameState)
         {
