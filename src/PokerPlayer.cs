@@ -17,8 +17,9 @@ namespace Nancy.Simple
                 var model = JsonConvert.DeserializeObject<GameStateModel>(state);
                 retVal = PreFlop(model);
             }
-            catch
+            catch (Exception e)
             {
+                Console.Error.WriteLine("C#: " + e.ToString());
                 retVal = 50;
             }
 
