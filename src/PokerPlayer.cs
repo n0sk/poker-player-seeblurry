@@ -15,7 +15,16 @@ namespace Nancy.Simple
             try
             {
                 var model = JsonConvert.DeserializeObject<GameStateModel>(state);
-                retVal = PreFlop(model);
+                switch (model.GameStage)
+                {
+                    case GAME_STAGE.PRE_FLOP:
+                        retVal = PreFlop(model);
+                        break;
+                    default:
+                        retVal = PostFlop(model);
+                        break;
+
+                }
             }
             catch (Exception e)
             {
@@ -64,6 +73,18 @@ namespace Nancy.Simple
                 default:
                     return BettingClass.smallRaise(model);
             }
+        }
+
+        private static int PostFlop(GameStateModel model)
+        {
+            var hand = model.EvaluateHand();
+
+            if (hand <= 3)
+                return BettingClass.foldOrCheck(model);
+            if (hand > 3 && hand <= 7)
+                return BettingClass.call(model);
+            else
+                return BettingClass.bigRaise(model);
         }
     }
 }
