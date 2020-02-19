@@ -10,7 +10,7 @@ namespace Nancy.Simple
 		{
 			//TODO: Use this method to return the value You want to bet
 			//return (int)gameState["current_buy_in"] - (int)gameState["player"]["in_action"]["bet"];
-			int small_blind = JObject.Parse(gameState)["small_blind"];
+			int small_blind = (int)JObject.Parse(gameState)["small_blind"];
 			return 3 * small_blind;
 			
 		}
