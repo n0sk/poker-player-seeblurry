@@ -9,6 +9,8 @@ namespace Nancy.Simple
 
         public static int BetRequest(JObject gameState, GameStateModel state)
         {
+            return 50;
+
             int retVal = 50;
 
             try
