@@ -1,3 +1,4 @@
+using System;
 using Newtonsoft.Json.Linq;
 
 namespace Nancy.Simple
@@ -23,7 +24,7 @@ namespace Nancy.Simple
         {
             int difference = gameState.current_buy_in - myself(gameState).bet;
             int myStack = myself(gameState).stack;
-            return (myStack * 0.3) + difference;
+            return (int)Math.Ceiling((myStack * 0.3) + difference);
         }
 
         public static int allIn(GameStateModel gameState)
