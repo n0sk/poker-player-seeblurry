@@ -78,13 +78,13 @@ namespace Nancy.Simple
         private static int PostFlop(GameStateModel model)
         {
             var hand = model.EvaluateHand();
-
-            if (hand <= 3)
+            return BettingClass.bet(model, hand);
+            /*if (hand <= 3)
                 return BettingClass.foldOrCheck(model);
             if (hand > 3 && hand <= 7)
                 return BettingClass.call(model);
             else
-                return BettingClass.bigRaise(model);
+                return BettingClass.bigRaise(model);*/
         }
     }
 }
