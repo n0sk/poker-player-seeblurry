@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using System;
+using Newtonsoft.Json.Linq;
 
 namespace Nancy.Simple
 {
@@ -8,12 +9,27 @@ namespace Nancy.Simple
 
         public static int BetRequest(JObject gameState, GameStateModel state)
         {
-			//BettingClass.smallRaise(gameState)
-            //var dGameState = (dynamic)gameState;
-            //TODO: Use this method to return the value You want to bet
-            //return (int)gameState["current_buy_in"] - (int)gameState["players"][gameState["in_action"]]["bet"] + (int)gameState["minimum_raise"];
-            int small_blind = (int)(gameState)["small_blind"];
-            return 50;
+            int retVal = 50;
+
+            try
+            {
+                //BettingClass.smallRaise(gameState)
+                //var dGameState = (dynamic)gameState;
+                //TODO: Use this method to return the value You want to bet
+                //return (int)gameState["current_buy_in"] - (int)gameState["players"][gameState["in_action"]]["bet"] + (int)gameState["minimum_raise"];
+                retVal = (int)(gameState)["small_blind"];
+            }
+            catch
+            {
+                retVal = 50;
+            }
+
+            if (retVal < 0)
+                retVal = 50;
+
+            return retVal;
+
+		
         }
 
         public static void ShowDown(JObject gameState)
