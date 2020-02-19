@@ -12,7 +12,8 @@ namespace Nancy.Simple
         }
         public static int call(GameStateModel gameState)
         {
-            return gameState.current_buy_in - myself(gameState).bet;
+            var retVal = gameState.current_buy_in - myself(gameState).bet;
+            return retVal > myself(gameState).stack ? myself(gameState).stack : retVal;
         }
 
         public static int smallRaise(GameStateModel gameState) 
@@ -24,7 +25,8 @@ namespace Nancy.Simple
         {
             int difference = gameState.current_buy_in - myself(gameState).bet;
             int myStack = myself(gameState).stack;
-            return (int)Math.Ceiling((myStack * 0.3) + difference);
+            var retVal = (int)Math.Ceiling((myStack * 0.3) + difference);
+            return retVal > myStack ? myStack : retVal;
         }
 
         public static int allIn(GameStateModel gameState)
@@ -36,7 +38,8 @@ namespace Nancy.Simple
         {
             int current_buy_in = gameState.current_buy_in;
             int minimum_raise = gameState.minimum_raise;
-            return current_buy_in - myself(gameState).bet + minimum_raise;
+            var retVal = current_buy_in - myself(gameState).bet + minimum_raise;
+            return retVal > myself(gameState).stack ? myself(gameState).stack : retVal;
         }
         private static PlayerModel myself(GameStateModel gameState)
         {
